@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:id="@+id/tvDateMe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="October 16"
+        android:textColor="@color/hour_date_color"/>
+    
+    <ImageView
+        android:id="@+id/ivUser"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginHorizontal="12dp"
+        app:layout_constraintBottom_toTopOf="@id/cardChat"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:background="@color/hour_date_color"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="David Glez"
+        app:layout_constraintStart_toEndOf="@+id/ivUser"
+        app:layout_constraintBottom_toTopOf="@+id/cardChat"
+        android:paddingHorizontal="6dp" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardChat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="0dp"
+        app:cardBackgroundColor="@color/card_me_background"
+        app:cardCornerRadius="12dp"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvDateMe">
+
+        <TextView
+            android:id="@+id/tvChat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="8dp"
+            android:textColor="@color/message_me_color"
+            tools:text="This is my message" />
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/tvHour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/cardChat"
+        app:layout_constraintBottom_toBottomOf="@+id/cardChat"
+        android:textSize="11sp"
+        android:textColor="@color/hour_date_color"
+        tools:text="12:45 pm"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
