@@ -9,8 +9,10 @@ import androidx.navigation.fragment.findNavController
 import com.david.glez.firebasecourse.advancedrealtimedatabse.R
 import com.david.glez.firebasecourse.advancedrealtimedatabse.databinding.FragmentChatBinding
 import com.david.glez.firebasecourse.advancedrealtimedatabse.databinding.FragmentMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 
+@AndroidEntryPoint
 class MainFragment : Fragment() {
 
     private lateinit var binding: FragmentMainBinding

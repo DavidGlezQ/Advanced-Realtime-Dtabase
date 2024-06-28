@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.google.play.services)
     alias(libs.plugins.org.jetbrains.kotlin.kapt)
+    alias(libs.plugins.hilt)
 }
 
 android {
@@ -37,6 +38,9 @@ android {
     }
     buildFeatures {
         viewBinding = true
+    }
+    kapt {
+        correctErrorTypes = true
     }
 }
 

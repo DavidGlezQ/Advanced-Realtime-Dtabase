@@ -12,7 +12,7 @@ constraintlayout = "2.1.4"
 google-play-services = "4.4.2"
 firebase-bom = "33.1.1"
 navigationFragment = "2.7.7"
-hilt = "2.44"
+hilt = "2.48"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
