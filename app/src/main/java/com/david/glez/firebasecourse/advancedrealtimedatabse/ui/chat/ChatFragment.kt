@@ -6,16 +6,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.david.glez.firebasecourse.advancedrealtimedatabse.R
 import com.david.glez.firebasecourse.advancedrealtimedatabse.databinding.FragmentChatBinding
+import com.david.glez.firebasecourse.advancedrealtimedatabse.domain.model.MessageModel
+import com.david.glez.firebasecourse.advancedrealtimedatabse.ui.chat.adapter.ChatAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class ChatFragment : Fragment() {
 
     private lateinit var binding: FragmentChatBinding
     private val viewModel by viewModels<ChatViewModel>()
+
+    private lateinit var chatAdapter: ChatAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,7 +33,30 @@ class ChatFragment : Fragment() {
         binding.ivBack.setOnClickListener {
             findNavController().navigate(R.id.actionBack_chatFragment_to_mainFragment)
         }
+        setUpUi()
         binding.btnSendMsg.setOnClickListener { viewModel.sendMessage() }
         return binding.root
+    }
+
+    private fun setUpUi() {
+        setUpMessageList()
+        subscribeToMessage()
+    }
+
+    private fun setUpMessageList() {
+        chatAdapter = ChatAdapter(mutableListOf(), "David")
+        binding.rvMsg.apply {
+            adapter = chatAdapter
+            layoutManager = LinearLayoutManager(context)
+        }
+    }
+
+    private fun subscribeToMessage() {
+        lifecycleScope.launch {
+            viewModel.messageList.collect {
+                chatAdapter.updateList(it.toMutableList())
+                binding.rvMsg.scrollToPosition(chatAdapter.messageList.size - 1)
+            }
+        }
     }
 }

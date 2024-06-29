@@ -7,7 +7,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <TextView
-        android:id="@+id/tvDateMe"
+        android:id="@+id/tvDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -27,6 +27,7 @@
         tools:background="@color/hour_date_color"/>
 
     <TextView
+        android:id="@+id/tvName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:text="David Glez"
@@ -43,7 +44,7 @@
         app:cardCornerRadius="12dp"
         app:cardUseCompatPadding="true"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDateMe">
+        app:layout_constraintTop_toBottomOf="@+id/tvDate">
 
         <TextView
             android:id="@+id/tvChat"
