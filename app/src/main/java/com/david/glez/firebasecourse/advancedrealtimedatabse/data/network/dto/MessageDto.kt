@@ -4,7 +4,7 @@ data class MessageDto(
     val message: String,
     val hour: String,
     val date: String,
-    val userDto: UserDto
+    val user: UserDto
 )
 
 data class UserDto(val userName: String, val admin: Boolean)
