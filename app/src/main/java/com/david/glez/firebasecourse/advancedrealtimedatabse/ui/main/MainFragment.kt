@@ -25,7 +25,7 @@ class MainFragment : Fragment() {
     ): View {
         binding = FragmentMainBinding.inflate(inflater, container, false)
         binding.btnChat.setOnClickListener {
-            if (binding.tieName.text.isNullOrBlank())
+            if (!binding.tieName.text.isNullOrEmpty())
                 viewModel.saveNickName(binding.tieName.text.toString())
                 findNavController().navigate(R.id.action_mainFragment_to_chatFragment)
         }

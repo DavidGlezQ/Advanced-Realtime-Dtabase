@@ -17,7 +17,7 @@ class SendMessageUseCase @Inject constructor(private val firebaseChatService: Fi
         val month = calendar.get(Calendar.MONTH) + 1
         val day = calendar.get(Calendar.DAY_OF_MONTH)
 
-        val userDto = UserDto(userName = "David", admin = true)
+        val userDto = UserDto(userName = "David", admin = false)
 
         val messageDto =
             MessageDto(

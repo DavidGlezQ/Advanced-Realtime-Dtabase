@@ -7,6 +7,7 @@ import com.david.glez.firebasecourse.advancedrealtimedatabse.databinding.ItemCha
 import com.david.glez.firebasecourse.advancedrealtimedatabse.domain.model.MessageModel
 
 class ChatViewHolder(private val binding: ViewBinding) : RecyclerView.ViewHolder(binding.root) {
+
     fun bind(messageModel: MessageModel, itemViewType: Int) {
         when (itemViewType) {
             ChatAdapter.SENT_MESSAGE -> bindSentMessage(messageModel)
@@ -24,7 +25,7 @@ class ChatViewHolder(private val binding: ViewBinding) : RecyclerView.ViewHolder
 
     private fun bindSentMessage(messageModel: MessageModel) {
         val currentBinding = binding as ItemChatMeBinding
-        currentBinding.tvChat.text = messageModel.message
+        currentBinding.tvChatMe.text = messageModel.message
         currentBinding.tvDateMe.text = messageModel.date
         currentBinding.tvHour.text = messageModel.hour
     }

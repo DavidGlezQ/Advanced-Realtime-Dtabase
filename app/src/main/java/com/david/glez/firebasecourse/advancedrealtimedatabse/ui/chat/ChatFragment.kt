@@ -11,10 +11,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.david.glez.firebasecourse.advancedrealtimedatabse.R
 import com.david.glez.firebasecourse.advancedrealtimedatabse.databinding.FragmentChatBinding
-import com.david.glez.firebasecourse.advancedrealtimedatabse.domain.model.MessageModel
 import com.david.glez.firebasecourse.advancedrealtimedatabse.ui.chat.adapter.ChatAdapter
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -44,7 +42,7 @@ class ChatFragment : Fragment() {
     }
 
     private fun setUpMessageList() {
-        chatAdapter = ChatAdapter(mutableListOf(), "David")
+        chatAdapter = ChatAdapter(mutableListOf())
         binding.rvMsg.apply {
             adapter = chatAdapter
             layoutManager = LinearLayoutManager(context)
@@ -54,7 +52,7 @@ class ChatFragment : Fragment() {
     private fun subscribeToMessage() {
         lifecycleScope.launch {
             viewModel.messageList.collect {
-                chatAdapter.updateList(it.toMutableList())
+                chatAdapter.updateList(it.toMutableList(), name = viewModel.name)
                 binding.rvMsg.scrollToPosition(chatAdapter.messageList.size - 1)
             }
         }

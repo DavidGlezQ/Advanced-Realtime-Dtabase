@@ -28,7 +28,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tvDateMe">
 
         <TextView
-            android:id="@+id/tvChat"
+            android:id="@+id/tvChatMe"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingHorizontal="12dp"

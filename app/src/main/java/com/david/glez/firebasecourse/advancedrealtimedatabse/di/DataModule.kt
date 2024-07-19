@@ -1,7 +1,7 @@
 package com.david.glez.firebasecourse.advancedrealtimedatabse.di
 
 import android.content.Context
-import com.david.glez.firebasecourse.advancedrealtimedatabse.data.database.DatabaseImpl
+import com.david.glez.firebasecourse.advancedrealtimedatabse.data.database.DatabaseServiceImpl
 import com.david.glez.firebasecourse.advancedrealtimedatabse.data.network.FirebaseChatService
 import com.david.glez.firebasecourse.advancedrealtimedatabse.domain.DatabaseService
 import com.google.firebase.database.DatabaseReference
@@ -16,7 +16,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object DataModule {
+class DataModule {
 
     @Singleton
     @Provides
@@ -29,6 +29,6 @@ object DataModule {
     @Singleton
     @Provides
     fun provideDataStoreService(@ApplicationContext context: Context) : DatabaseService {
-        return DatabaseImpl(context = context)
+        return DatabaseServiceImpl(context = context)
     }
 }

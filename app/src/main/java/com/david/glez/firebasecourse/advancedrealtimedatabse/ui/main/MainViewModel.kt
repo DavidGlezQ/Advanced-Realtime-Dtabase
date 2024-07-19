@@ -9,7 +9,8 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(private val saveUserNameUseCase: SaveUserNameUseCase): ViewModel() {
+class MainViewModel @Inject constructor(private val saveUserNameUseCase: SaveUserNameUseCase) :
+    ViewModel() {
     fun saveNickName(userName: String) {
         viewModelScope.launch(Dispatchers.IO) {
             saveUserNameUseCase(userName)
