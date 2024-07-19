@@ -32,7 +32,12 @@ class ChatFragment : Fragment() {
             findNavController().navigate(R.id.actionBack_chatFragment_to_mainFragment)
         }
         setUpUi()
-        binding.btnSendMsg.setOnClickListener { viewModel.sendMessage() }
+        binding.btnSendMsg.setOnClickListener {
+            val msg = binding.etChat.text.toString()
+            if (msg.isNotEmpty())
+                viewModel.sendMessage(msg)
+            binding.etChat.text.clear()
+        }
         return binding.root
     }
 

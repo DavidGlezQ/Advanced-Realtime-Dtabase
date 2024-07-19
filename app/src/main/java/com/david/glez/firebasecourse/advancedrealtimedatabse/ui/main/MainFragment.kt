@@ -5,12 +5,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.david.glez.firebasecourse.advancedrealtimedatabse.R
 import com.david.glez.firebasecourse.advancedrealtimedatabse.databinding.FragmentChatBinding
 import com.david.glez.firebasecourse.advancedrealtimedatabse.databinding.FragmentMainBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
@@ -27,9 +31,30 @@ class MainFragment : Fragment() {
         binding.btnChat.setOnClickListener {
             if (!binding.tieName.text.isNullOrEmpty())
                 viewModel.saveNickName(binding.tieName.text.toString())
-                findNavController().navigate(R.id.action_mainFragment_to_chatFragment)
+            findNavController().navigate(R.id.action_mainFragment_to_chatFragment)
         }
+        subscribeToState()
 
         return binding.root
+    }
+
+    private fun subscribeToState() {
+        lifecycleScope.launch {
+            viewModel.iuState.collect {
+                when (it) {
+                    MainViewState.LOADING -> {
+                        binding.pbLoading.isVisible = true
+                    }
+
+                    MainViewState.REGISTERED -> {
+                        findNavController().navigate(R.id.action_mainFragment_to_chatFragment)
+                    }
+
+                    MainViewState.UNREGISTERED -> {
+                        binding.pbLoading.isVisible = false
+                    }
+                }
+            }
+        }
     }
 }
