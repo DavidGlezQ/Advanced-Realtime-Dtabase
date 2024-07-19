@@ -55,7 +55,7 @@ dependencies {
     kapt(libs.dagger.hilt.compiler)
 
     //Data Store
-    implementation(libs.datastore)
+    implementation(libs.androidx.datastore.preferences)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

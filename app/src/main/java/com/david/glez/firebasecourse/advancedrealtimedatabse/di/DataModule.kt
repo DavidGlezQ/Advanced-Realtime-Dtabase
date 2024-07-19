@@ -1,12 +1,16 @@
 package com.david.glez.firebasecourse.advancedrealtimedatabse.di
 
+import android.content.Context
+import com.david.glez.firebasecourse.advancedrealtimedatabse.data.database.DatabaseImpl
 import com.david.glez.firebasecourse.advancedrealtimedatabse.data.network.FirebaseChatService
+import com.david.glez.firebasecourse.advancedrealtimedatabse.domain.DatabaseService
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
@@ -22,4 +26,9 @@ object DataModule {
     @Provides
     fun provideFirebaseService(reference: DatabaseReference) = FirebaseChatService(reference = reference)
 
+    @Singleton
+    @Provides
+    fun provideDataStoreService(@ApplicationContext context: Context) : DatabaseService {
+        return DatabaseImpl(context = context)
+    }
 }
