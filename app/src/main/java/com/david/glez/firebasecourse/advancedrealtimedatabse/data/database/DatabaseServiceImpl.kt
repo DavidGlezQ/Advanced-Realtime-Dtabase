@@ -21,6 +21,11 @@ class DatabaseServiceImpl @Inject constructor(private val context: Context) :Dat
         name = "user"
     )
 
+    override suspend fun clear() {
+        context.userPreferencesDataStore.edit { preferences ->
+            preferences[USER_NAME] = ""
+        }    }
+
     override suspend fun saveUserName(nickname: String) {
         context.userPreferencesDataStore.edit { preferences ->
             preferences[USER_NAME] = nickname
